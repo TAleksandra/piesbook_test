@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return HttpResponse(' <h1 style="font-size:60px;"> PIESBOOK!</h1>')
+    return render(request, 'forum/posts.html', {})
 # Create your views here.
