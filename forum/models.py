@@ -18,3 +18,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+# class Pet(models.Model):
+#     Name = models.CharField(max_length=200)
+#     Type =
+

@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# przy tworzeniu nowej app trzeba dodać do powiązania bazy z apką
 INSTALLED_APPS = [
     'forum.apps.ForumConfig',
     'django.contrib.admin',
