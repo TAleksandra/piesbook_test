@@ -1,4 +1,17 @@
 <html>
-    <p>specjalne miejsce na htmla</p>
-    <p>powinno dzialac</p>
+    <head>
+        <title>Piesbook</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Witamy na piesbook. Ponizej mozna zobaczyc najnowsze posty o zaginionych zwierzetach.</a></h1>
+        </div>
+        {% for post in posts %}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+    </body>
 </html>
