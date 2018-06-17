@@ -10,4 +10,34 @@ border-radius: 2;
 font-family:'Satisfy', cursive;
 }
 
-h4 {color: #5D5D5D;}
+
+.fixed-panel {
+  max-height: 3;
+}
+
+    h2 {
+        font-family: Tahoma;
+        color: #FFFFFF;
+    }
+    h4 {
+        font-family: Helvetica;
+        color: #AA9E99;
+    }
+
+.post {
+    padding-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    background-color: #775547;
+    text-align:center;
+    border-radius: 10px;
+
+    img {
+        width: 80%;
+    }
+
+    button {
+        bottom: 0;
+    }
+
+}
