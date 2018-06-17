@@ -11,9 +11,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView,View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django import forms
 from .forms import UserForm
 from .models import Post
+
 
 
 
@@ -31,10 +32,10 @@ class DetailView(generic.DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['author', 'title', 'text', 'image']
+    fields = ['author', 'title', 'image', 'text']
 
+    # template_name = 'forum/post_form.html'
     success_url = reverse_lazy('forum:index')
-
 
 class PostUpdate(UpdateView):
     model = Post
