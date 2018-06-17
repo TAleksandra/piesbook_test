@@ -27,6 +27,8 @@
                 <span class="icon-bar"> </span>
                 <span class="icon-bar"> </span>
                 <span class="icon-bar"> </span>
+                <span class="icon-bar"> </span>
+                <span class="icon-bar"> </span>
             </button>
             <!logo po lewej>
             <a class="navbar-brand" href="{% url 'forum:index' %}">Piesbook</a>
@@ -41,19 +43,20 @@
                     </a>
                 </li>
 
-                <li class="">
 
-                    <a href="#">
-                      &nbsp;
-                      Rejstracja
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!przycisk dodaj>
                 <li class="">
                     <a href="{% url 'forum:add_post' %}">
                         <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
+                    </a>
+                </li>
+                 <li class="">
+
+                    <a href="#">
+                      &nbsp;
+                      Rejstracja
                     </a>
                 </li>
                 <!przycisk logout>

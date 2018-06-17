@@ -1,15 +1,31 @@
 {% extends 'forum/base.html' %}<! import  bazowego pliku>
 {% block body%}
-<div>
-<!body background="static/forum/images/background.jpg"><!/body>
-{% for post in object_list %}
-<div>
 
-    <p>published: {{ post.published_date }}</p>
-    <h1><a href="{%url 'forum:post_detail' post.id%}">{{ post.title }}</a></h1>
-    <p>{{ post.text|linebreaksbr }}</p>
-</div>
-{% endfor %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Ogłoszenia</h3>
+        </div>
+
+            {% for post in object_list %}
+            <div class="col-sm-4 col-lg-2">
+                <div class="thumvnail">
+                    <a href="{%url 'forum:post_detail' post.id%}">
+                        {{ post.title }}<!można tu podlinkować obrazek>
+                    </a>
+                     <div class="caption">
+                            <h2>{{ post.title }}</h2>
+                            <h4>{{ post.artist }}</h4>
+                     </div>
+                        <a href="{% url 'forum:post_detail' post.id %}" class="btn btn-primary btn-sm" role="button">
+                            View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+
+    </div>
 
 </div>
+
 {% endblock%}
