@@ -9,12 +9,12 @@ from django.views import generic
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from django.views.generic import FormView, RedirectView
-from django.views.generic import View
+from django.views.generic import FormView, RedirectView,View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .forms import UserForm
 from .models import Post
+
 
 
 class IndexView(generic.ListView):
@@ -26,12 +26,14 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Post
+
     template_name = 'forum/single_post.html'
 
 class PostCreate(CreateView):
     model = Post
     fields = ['author','title', 'text']
-    #TODO:naprawić dodwanie postów
+
+    success_url = reverse_lazy('forum:index')
 
 
 class PostUpdate(UpdateView):

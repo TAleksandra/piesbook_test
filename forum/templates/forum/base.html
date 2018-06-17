@@ -52,19 +52,35 @@
                         <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
                     </a>
                 </li>
-                 <li class="">
 
-                    <a href="{% url 'forum:register' %}">
-                      &nbsp;
-                      Rejstracja
-                    </a>
-                </li>
-                <!przycisk logout>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Zaloguj
-                    </a>
-                </li>
+
+                    <li class="">
+
+                        <a href="#">
+                        &nbsp;
+                        {{ user.username }}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Zaloguj
+                        </a>
+                    </li>
+
+                    <li class="">
+
+                        <a href="{% url 'forum:register' %}">
+                        &nbsp;
+                        Rejstracja
+                        </a>
+                    </li>
+                    <!przycisk logout>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Zaloguj
+                        </a>
+                    </li>
+
             </ul>
         </div>
     </div>

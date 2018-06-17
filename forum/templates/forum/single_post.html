@@ -7,6 +7,19 @@
             <div>
                 <p>opublikowano: {{ post.published_date }}</p>
 
-                <p>{{ post.text|linebreaksbr }}</p>
+                <p></p>
+            </div>
+              <div class="col-sm-4 col-lg-3 post">
+                <div class="thumvnail">
+                    <a href="{%url 'forum:post_detail' post.id%}">
+                        <!można tu podlinkować obrazek>
+                         <img src="http://psy-pies.com/pliki/image/foto/duze/foto57889622e1f52.jpg" class="img-responsive">
+                    </a>
+                     <div class="caption">
+                            <h2>{{ post.title }}</h2>
+                            <p>opublikowano: {{ post.published_date }}</p>
+                            <div class="panel-body"><h4>{{ post.text|linebreaksbr }}</h4></div>
+                     </div>
+                </div>
             </div>
 {% endblock%}
