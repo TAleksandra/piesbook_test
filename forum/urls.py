@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/$',views.DeleteView.as_view(),name='delete'),
 
     url(r'^register/$', views.UserFormView.as_view(), name='register'),
+    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
 
 ]

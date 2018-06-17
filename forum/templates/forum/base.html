@@ -61,12 +61,12 @@
                         {{ user.username }}
                         </a>
                     </li>
+                    {% if log_index.is_authenticated %}
                     <li class="">
-                        <a href="#">
+                        <a href="{% url 'forum:login'%}">
                             <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Zaloguj
                         </a>
                     </li>
-
                     <li class="">
 
                         <a href="{% url 'forum:register' %}">
@@ -74,6 +74,16 @@
                         Rejstracja
                         </a>
                     </li>
+                    {%else%}
+                    <li class="">
+                        <a href="{% url 'forum:logout'%}">
+                            <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Wyloguj
+                        </a>
+                    </li>
+                    {%endif%}
+
+
+
 
 
 

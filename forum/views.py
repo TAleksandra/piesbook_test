@@ -12,10 +12,16 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView,View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
-from .forms import UserForm
+from .forms import UserForm,UserLog
 from .models import Post
 
 
+def log_index(request):
+    if request.user.is_authenticated():
+        print("Logged in")
+    else:
+        print("Not logged in")
+    return request.user
 
 
 class IndexView(generic.ListView):
@@ -25,6 +31,8 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Post.objects.all()
 
+
+
 class DetailView(generic.DetailView):
     model = Post
 
@@ -32,10 +40,14 @@ class DetailView(generic.DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['author', 'title', 'image', 'text']
+    fields = [ 'title', 'image', 'text']
 
     # template_name = 'forum/post_form.html'
     success_url = reverse_lazy('forum:index')
+    #
+    # def post(self):
+    #     if log_index(self.request).is_authenticated():
+
 
 class PostUpdate(UpdateView):
     model = Post
@@ -85,9 +97,30 @@ class LoginView(FormView):
     """
     Provides the ability to login as a user with a username and password
     """
-    success_url = '/auth/home/'
+
+    template_name = 'forum/registration_form.html'
+    success_url = 'forum:index'
     form_class = AuthenticationForm
     redirect_field_name = REDIRECT_FIELD_NAME
+
+    # wyświetlić prosty formularz
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self,request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            if user is not None:
+
+                if user.is_active:# sprawdzenie czy nie jest zbanowany
+                    login(request,user) #zalogowanie użytkownika
+                    return redirect('forum:index')# powrót do strony głónej
+        return render(request,self.template_name,{'form':form})
+
+
 
     @method_decorator(sensitive_post_parameters('password'))
     @method_decorator(csrf_protect)
@@ -119,8 +152,13 @@ class LogoutView(RedirectView):
     """
     Provides users the ability to logout
     """
-    url = '/auth/login/'
+    url = reverse_lazy('forum:index')
 
     def get(self, request, *args, **kwargs):
+        logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
+    def post(self,request, *args, **kwargs):
+
         auth_logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
