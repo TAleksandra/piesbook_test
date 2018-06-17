@@ -1,8 +1,5 @@
-<html>
-    <head>
-        <title>Piesbook</title>
-    </head>
-    <body>
+{% extends 'forum/base.html' %}<! import  bazowego pliku>
+{% block body%}
         <div>
             <h1><a href="{%url 'forum:index' %}"">{{ post.title }}</a></h1>
         </div>
@@ -12,6 +9,4 @@
 
                 <p>{{ post.text|linebreaksbr }}</p>
             </div>
-
-            </body>
-</html>
+{% endblock%}

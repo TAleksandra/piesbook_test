@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>PiesBook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'forum/style.css' %}"/>
+
+
+
+
+
+
+</head>
+<body>
+<! pasek manu>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-hader">
+            <!definiowanie przycisków w nagłóku>
+            <button type="button" class="navbar-toggle" data-toggle="collaps" data-target="#topNavBar">
+                <span class="icon-bar"> </span>
+                <span class="icon-bar"> </span>
+                <span class="icon-bar"> </span>
+            </button>
+            <!logo po lewej>
+            <a class="navbar-brand" href="{% url 'forum:index' %}">Piesbook</a>
+        </div>
+        <!opis przycisków>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'forum:index'%}">
+                        <span class="glyphicons glyphicons-group" aria-hidden="true"></span>&nbsp;
+                        Forum
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{% url 'forum:register'%}">
+                      &nbsp;
+                      Rejstracja
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!przycisk dodaj>
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
+                    </a>
+                </li>
+                <!przycisk logout>
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Wyloguj
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

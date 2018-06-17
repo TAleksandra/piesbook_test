@@ -1,63 +1,5 @@
-{% load staticfiles %}
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
-
-
-<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<! pasek manu>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-hader">
-            <!definiowanie przycisków w nagłóku>
-            <button type="button" class="navbar-toggle" data-toggle="collaps" data-target="#topNavBar">
-                <span class="icon-bar"> </span>
-                <span class="icon-bar"> </span>
-                <span class="icon-bar"> </span>
-            </button>
-            <!logo po lewej>
-            <a class="navbar-brand" href="{% url 'forum:index' %}">Piesbook</a>
-        </div>
-        <!opis przycisków>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="{% url 'forum:index'%}">
-                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;
-                        Forum
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="{% url 'forum:register'%}">
-                      &nbsp;
-                      Rejstracja
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!przycisk dodaj>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
-                    </a>
-                </li>
-                <!przycisk logout>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Wyloguj
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
+{% extends 'forum/base.html' %}<! import  bazowego pliku>
+{% block body%}
 <div>
 <!body background="static/forum/images/background.jpg"><!/body>
 {% for post in posts %}
@@ -70,3 +12,4 @@
 {% endfor %}
 
 </div>
+{% endblock%}
