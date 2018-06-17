@@ -6,8 +6,10 @@ app_name='forum'
 
 urlpatterns = [
     #/strona domowa
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 
-    url(r'^(?P<post_id>[0-9]+)/$',views.post_detail, name='post_detail'),
-    url(r'^register/$', views.UserFormView.as_view(), name='register'),
+    url(r'^(?P<pk>[0-9]+)/$',views.DetailView.as_view(), name='post_detail'),
+    # url(r'^register/$', views.UserFormView.as_view(), name='register'),
+    url(r'^register/$', views.DetailView.as_view(), name='register'),
+    url(r'^post/add/$',views.PostCreate.as_view(),name= 'add_post'),
 ]

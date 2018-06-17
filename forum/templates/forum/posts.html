@@ -2,7 +2,7 @@
 {% block body%}
 <div>
 <!body background="static/forum/images/background.jpg"><!/body>
-{% for post in posts %}
+{% for post in object_list %}
 <div>
 
     <p>published: {{ post.published_date }}</p>
