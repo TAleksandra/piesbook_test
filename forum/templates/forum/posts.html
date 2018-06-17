@@ -12,8 +12,8 @@
             <div class="col-sm-4 col-lg-2">
                 <div class="thumvnail">
                     <a href="{%url 'forum:post_detail' post.id%}">
-                        {{ post.title }}<!można tu podlinkować obrazek>
-                         <!img src="{{ post.image.url }}" class="img-responsive">
+                        <!można tu podlinkować obrazek>
+                         <img src="http://psy-pies.com/pliki/image/foto/duze/foto57889622e1f52.jpg" class="img-responsive">
                     </a>
                      <div class="caption">
                             <h2>{{ post.title }}</h2>
@@ -21,6 +21,8 @@
                      </div>
                         <a href="{% url 'forum:post_detail' post.id %}" class="btn btn-primary btn-sm" role="button">
                             View Details</a>
+
+
                 </div>
             </div>
             {% endfor %}
