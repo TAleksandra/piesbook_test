@@ -16,11 +16,11 @@ font-family:'Satisfy', cursive;
 }
 
     h2 {
-        font-family: Tahoma;
+        font-family: 'Raleway', sans-serif;
         color: #FFFFFF;
     }
     h4 {
-        font-family: Helvetica;
+        font-family: 'Questrial', sans-serif;
         color: #AA9E99;
     }
 
@@ -29,6 +29,24 @@ font-family:'Satisfy', cursive;
     margin-bottom: 1em;
     margin-left: 1em;
     background-color: #775547;
+    text-align:center;
+    border-radius: 10px;
+
+    img {
+        width: 80%;
+    }
+
+    button {
+        bottom: 0;
+    }
+
+}
+
+.formularz {
+    padding-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    background-color: white;
     text-align:center;
     border-radius: 10px;
 

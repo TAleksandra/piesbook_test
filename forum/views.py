@@ -31,7 +31,7 @@ class DetailView(generic.DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['author','title', 'text']
+    fields = ['author', 'title', 'text', 'image']
 
     success_url = reverse_lazy('forum:index')
 
