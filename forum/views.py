@@ -14,9 +14,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
 from .forms import UserForm,UserLog
 from .models import Post
+from django.contrib.auth.models import User
 
 
-def log_index(request):
+def logind(self, request):
     if request.user.is_authenticated():
         print("Logged in")
     else:
@@ -31,6 +32,12 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Post.objects.all()
 
+    def log_index(self,request):
+        if request.user.is_authenticated():
+            print("Logged in")
+        else:
+            print("Not logged in")
+        return request.user
 
 
 class DetailView(generic.DetailView):
@@ -40,13 +47,14 @@ class DetailView(generic.DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = [ 'title', 'image', 'text']
+    fields = [ 'author', 'title', 'image', 'text']
 
     # template_name = 'forum/post_form.html'
     success_url = reverse_lazy('forum:index')
-    #
-    # def post(self):
-    #     if log_index(self.request).is_authenticated():
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PostUpdate(UpdateView):
@@ -99,26 +107,26 @@ class LoginView(FormView):
     """
 
     template_name = 'forum/registration_form.html'
-    success_url = 'forum:index'
+    success_url = reverse_lazy('forum:index')
     form_class = AuthenticationForm
     redirect_field_name = REDIRECT_FIELD_NAME
 
     # wyświetlić prosty formularz
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self,request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            user = form.save(commit=False)
-            if user is not None:
-
-                if user.is_active:# sprawdzenie czy nie jest zbanowany
-                    login(request,user) #zalogowanie użytkownika
-                    return redirect('forum:index')# powrót do strony głónej
-        return render(request,self.template_name,{'form':form})
+    # def get(self, request):
+    #     form = self.form_class(None)
+    #     return render(request, self.template_name, {'form': form})
+    #
+    # def post(self,request):
+    #     form = self.form_class(request.POST)
+    #
+    #     if form.is_valid():
+    #         user = form.save(commit=False)
+    #         if user is not None:
+    #
+    #             if user.is_active:# sprawdzenie czy nie jest zbanowany
+    #                 login(request,user) #zalogowanie użytkownika
+    #                 return redirect('forum:index')# powrót do strony głónej
+    #     return render(request,self.template_name,{'form':form})
 
 
 
@@ -141,11 +149,11 @@ class LoginView(FormView):
 
         return super(LoginView, self).form_valid(form)
 
-    def get_success_url(self):
-        redirect_to = self.request.REQUEST.get(self.redirect_field_name)
-        if not is_safe_url(url=redirect_to, host=self.request.get_host()):
-            redirect_to = self.success_url
-        return redirect_to
+    # def get_success_url(self):
+    #     redirect_to = self.GET.get(self.redirect_field_name)
+    #     if not is_safe_url(url=redirect_to, host=self.request.get_host()):
+    #         redirect_to = self.success_url
+    #     return redirect_to
 
 
 class LogoutView(RedirectView):
@@ -155,7 +163,7 @@ class LogoutView(RedirectView):
     url = reverse_lazy('forum:index')
 
     def get(self, request, *args, **kwargs):
-        logout(request)
+        auth_logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
 
     def post(self,request, *args, **kwargs):
