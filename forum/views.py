@@ -14,7 +14,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
 from .forms import UserForm,UserLog
 from .models import Post
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,AnonymousUser
 
 
 def logind(self, request):
@@ -47,13 +47,15 @@ class DetailView(generic.DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = [ 'author', 'title', 'image', 'text']
+    fields = [  'title', 'image', 'text']
 
     # template_name = 'forum/post_form.html'
     success_url = reverse_lazy('forum:index')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        us= self.request.user
+        
+        form.instance.author = us
         return super().form_valid(form)
 
 

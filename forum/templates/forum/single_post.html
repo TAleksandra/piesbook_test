@@ -5,6 +5,7 @@
         </div>
 
             <div>
+                <h3>Autor :  {{ post.author}}</h3>
                 <p>opublikowano: {{ post.published_date }}</p>
 
                 <p></p>
@@ -19,6 +20,7 @@
                      <div class="caption">
                             <h2>{{ post.title }}</h2>
                             <p>opublikowano: {{ post.published_date }}</p>
+
                             <div class="panel-body"><h4>{{ post.text|linebreaksbr }}</h4></div>
                      </div>
                 </div>

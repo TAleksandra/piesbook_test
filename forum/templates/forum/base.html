@@ -47,11 +47,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!przycisk dodaj>
-                <li class="">
-                    <a href="{% url 'forum:add_post' %}">
-                        <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
-                    </a>
-                </li>
+
                     <li class="">
                         <a href="#">
                         &nbsp;
@@ -59,6 +55,11 @@
                         </a>
                     </li>
                     {% if  request.user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url 'forum:add_post' %}">
+                            <span class="glyphicon glyphycon-plus" aria-hidden="true"></span> Dodaj ogłoszenie
+                        </a>
+                    </li>
                     <li class="">
                         <a href="{% url 'forum:logout'%}">
                             <span class="glyphicon glyphycon-off" aria-hidden="true"></span> Wyloguj
